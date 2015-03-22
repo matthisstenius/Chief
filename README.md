@@ -4,7 +4,7 @@ A simple Command bus.
 
 ## Installation
 
-`composer require "matthis/Chief:1.0"`
+`composer require "matthis/chief:1.0"`
 
 ## Tests
 

@@ -1,8 +1,8 @@
-<?php namespace Workly\Commander;
+<?php namespace Matthis\Commander;
 
 use Illuminate\Contracts\Container\Container;
-use Workly\Commander\Exceptions\HandlerNotRegisteredException;
-use Workly\Commander\Exceptions\InvalidCommandException;
+use Matthis\Commander\Exceptions\HandlerNotRegisteredException;
+use Matthis\Commander\Exceptions\InvalidCommandException;
 
 class CommandBus {
     /**
@@ -31,7 +31,7 @@ class CommandBus {
 
         $commandHandler = $this->getHandlerClass($handlerName);
 
-        $commandHandler->handle($command);
+        return $commandHandler->handle($command);
     }
 
     /**

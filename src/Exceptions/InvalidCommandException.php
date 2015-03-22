@@ -1,4 +1,4 @@
-<?php namespace Workly\Commander\Exceptions;
+<?php namespace Matthis\Commander\Exceptions;
 
 use Exception;
 

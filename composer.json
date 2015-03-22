@@ -1,0 +1,23 @@
+{
+    "name": "matthis/commander",
+    "description": "A simple command bus",
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/container": "5.0.*"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthis Stenius",
+            "email": "matthis@me.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Matthis\\Commander\\": "src"
+        }
+    }
+}

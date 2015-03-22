@@ -1,4 +1,4 @@
-<?php namespace Workly\Infrastructure\Commander\Contracts;
+<?php namespace Matthis\Chief\Contracts;
 
 interface CommandHandler {
     public function handle($command);

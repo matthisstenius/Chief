@@ -1,4 +1,4 @@
-<?php namespace Matthis\Commander\Exceptions;
+<?php namespace Matthis\Chief\Exceptions;
 
 use Exception;
 

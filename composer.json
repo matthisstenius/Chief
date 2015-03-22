@@ -17,7 +17,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Matthis\\Commander\\": "src"
+            "Matthis\\Chief\\": "src",
+            "spec\\Matthis\\Chief\\": "spec"
         }
     }
 }

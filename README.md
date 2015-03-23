@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/matthisstenius/Chief.svg?branch=master)](https://travis-ci.org/matthisstenius/Chief)
 
-A simple Command bus. As default it uses Laravels IoC container but that can be swappedat run time against another implementation.  
+A simple Command bus. As default it uses Laravels IoC container but that can be swapped at runtime against another implementation.  
 
 ## Installation
 
@@ -11,6 +11,17 @@ Install via composer.
 `composer require "matthis/chief:1.0"`
 
 ## Usage
+
+Executing a command is as simple as:
+
+```php
+<?php 
+
+$commandBus = new matthis\Chief\CommandBus(); // Needs to be injected with an IoC container
+
+$myCommand = new ReigtserUserCommand('John Doe', 'john@doe.com');
+$commandBus->execute($myCommand);
+```
 
 Chief expects the following naming convention:
 
@@ -42,11 +53,12 @@ class RegisterUserCommandHandler
 {
     public function handle($command)
     {
-        $command->username; //The username
-        $command->email; //The email
+        $command->username; //John Doe
+        $command->email; //john@doe.com
     }
 }
 ```
+
 ## Tests
 
 `vendor/bin/phpspec run`

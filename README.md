@@ -8,7 +8,7 @@ A simple Command bus.
 
 Install via composer.
 
-`composer require "matthis/chief:1.0"`
+`composer require "matthis/chief:1.1.*"`
 
 ## Usage
 

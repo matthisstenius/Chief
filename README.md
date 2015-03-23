@@ -12,13 +12,24 @@ Install via composer.
 
 ## Usage
 
+Executing a command is as simple as:
+
+```php
+<?php 
+
+$commandBus = new matthis\Chief\CommandBus();
+
+$myCommand = new ReigtserUserCommand('John Doe', 'john@doe.com');
+$commandBus->execute($myCommand);
+```
+
 Chief expects the following naming convention:
 
 The commands should end with "Command".
 
 Example command:
 
-``php
+```php
 <?php
 
 class RegisterUserCommand`
@@ -41,11 +52,12 @@ class RegisterUserCommandHandler
 {
     public function handle($command)
     {
-        $command->username; //The username
-        $command->email; //The email
+        $command->username; //John Doe
+        $command->email; //john@doe.com
     }
 }
 ```
+
 ## Tests
 
 `vendor/bin/phpspec run`

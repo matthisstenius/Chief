@@ -1,20 +1,10 @@
 <?php namespace Matthis\Chief;
 
-use Illuminate\Contracts\Container\Container;
 use Matthis\Chief\Exceptions\HandlerNotRegisteredException;
 use Matthis\Chief\Exceptions\InvalidCommandException;
+use ReflectionClass;
 
 class CommandBus {
-    /**
-     * @var Container
-     */
-    private $app;
-
-    public function __construct(Container $app)
-    {
-        $this->app = $app;
-    }
-
     /**
      * Executes the command
      *
@@ -56,13 +46,15 @@ class CommandBus {
     }
 
     /**
-     * Resolves the handler class from the container
+     * Resolves the handler class
      *
      * @param string $handlerName
-     * @return mixed
+     * @return object
      */
     private function getHandlerClass($handlerName)
     {
-        return $this->app->make($handlerName);
+        $reflection = new ReflectionClass($handlerName);
+
+        return $reflection->newInstance();
     }
 } 

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/matthisstenius/Chief.svg?branch=master)](https://travis-ci.org/matthisstenius/Chief)
 
-A simple Command bus. As default it uses Laravels IoC container but that can be swappedat run time against another implementation.  
+A simple Command bus.
 
 ## Installation
 
@@ -21,8 +21,7 @@ Example command:
 ``php
 <?php
 
-class RegisterUserCommand 
-{
+class RegisterUserCommand`
     public function __construct($username, $email)
     {
         $this->username = $username;

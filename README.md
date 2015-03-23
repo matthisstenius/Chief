@@ -18,7 +18,7 @@ The commands should end with "Command".
 
 Example command:
 
-``php
+```php
 <?php
 
 class RegisterUserCommand 

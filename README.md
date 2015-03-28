@@ -8,7 +8,7 @@ A simple Command bus.
 
 Install via composer.
 
-`composer require "matthis/chief:1.1.*"`
+`composer require "matthis/chief:1.2.*"`
 
 ## Usage
 
@@ -19,7 +19,7 @@ Executing a command is as simple as:
 
 $commandBus = new matthis\Chief\CommandBus();
 
-$myCommand = new ReigtserUserCommand('John Doe', 'john@doe.com');
+$myCommand = new RegisterUserCommand('John Doe', 'john@doe.com');
 $commandBus->execute($myCommand);
 ```
 
@@ -32,7 +32,7 @@ Example command:
 ```php
 <?php
 
-class RegisterUserCommand`
+class RegisterUserCommand
     public function __construct($username, $email)
     {
         $this->username = $username;

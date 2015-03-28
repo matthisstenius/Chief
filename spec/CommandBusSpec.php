@@ -30,7 +30,7 @@ class CommandBusSpec extends ObjectBehavior
     function it_should_fail_when_command_is_named_incorrectly(Container $container)
     {
         $this->beConstructedWith($container);
-        
+
         $this->shouldThrow('Matthis\Chief\Exceptions\InvalidCommandException')
             ->during('execute', [new Invalid]);
     }

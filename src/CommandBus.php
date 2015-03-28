@@ -1,10 +1,20 @@
 <?php namespace Matthis\Chief;
 
+use Illuminate\Contracts\Container\Container;
 use Matthis\Chief\Exceptions\HandlerNotRegisteredException;
 use Matthis\Chief\Exceptions\InvalidCommandException;
-use ReflectionClass;
 
 class CommandBus {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
     /**
      * Executes the command
      *
@@ -53,8 +63,6 @@ class CommandBus {
      */
     private function getHandlerClass($handlerName)
     {
-        $reflection = new ReflectionClass($handlerName);
-
-        return $reflection->newInstance();
+        return $this->container->make($handlerName);
     }
 } 

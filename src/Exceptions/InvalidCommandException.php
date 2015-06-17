@@ -2,6 +2,7 @@
 
 use Exception;
 
-class InvalidCommandException extends Exception {
+class InvalidCommandException extends Exception
+{
 
-} 
+}

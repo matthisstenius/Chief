@@ -1,5 +1,6 @@
 <?php namespace Matthis\Chief\Contracts;
 
-interface CommandHandler {
+interface CommandHandler
+{
     public function handle($command);
-} 
+}

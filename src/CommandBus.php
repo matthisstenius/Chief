@@ -4,7 +4,8 @@ use Illuminate\Contracts\Container\Container;
 use Matthis\Chief\Exceptions\HandlerNotRegisteredException;
 use Matthis\Chief\Exceptions\InvalidCommandException;
 
-class CommandBus {
+class CommandBus
+{
     /**
      * @var ContainerInterface
      */
@@ -65,4 +66,4 @@ class CommandBus {
     {
         return $this->container->make($handlerName);
     }
-} 
+}

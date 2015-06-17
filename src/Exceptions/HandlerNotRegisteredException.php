@@ -2,6 +2,7 @@
 
 use Exception;
 
-class HandlerNotRegisteredException extends Exception {
+class HandlerNotRegisteredException extends Exception
+{
 
-} 
+}

@@ -41,7 +41,7 @@ class CommandBus
      */
     private function translateToHandler($command)
     {
-        $commandName = get_class($command);
+        $commandName = $this->getClassName($command);
 
         if (! stripos($commandName, 'Command')) {
             throw new InvalidCommandException('The provided command name is invalid. Command must have  "Command” in it!');
@@ -65,5 +65,19 @@ class CommandBus
     private function getHandlerClass($handlerName)
     {
         return $this->container->make($handlerName);
+    }
+
+    /**
+     * Get class short name
+     
+     * @param object $command
+     * @return string
+     */
+
+    private function getClassName($command)
+    {
+        $reflection = new Reflection($command);
+
+        return $reflection->getShortName();
     }
 }

@@ -1,6 +1,6 @@
 <?php namespace spec\Matthis\Chief;
 
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Container\Container;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use spec\Matthis\Chief\TestDummies\AnotherCommand;

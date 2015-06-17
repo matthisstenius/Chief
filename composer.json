@@ -2,7 +2,8 @@
     "name": "matthis/chief",
     "description": "A simple command bus",
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "illuminate/Container": "4.*"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.1"

@@ -1,8 +1,9 @@
 <?php namespace Matthis\Chief;
 
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 use Matthis\Chief\Exceptions\HandlerNotRegisteredException;
 use Matthis\Chief\Exceptions\InvalidCommandException;
+use ReflectionClass;
 
 class CommandBus
 {
@@ -41,14 +42,17 @@ class CommandBus
      */
     private function translateToHandler($command)
     {
-        $commandName = $this->getClassName($command);
+        $reflection = new ReflectionClass($command);
+
+        $commandName =  $reflection->getShortName();
+        $namespace = $reflection->getNameSpaceName();
 
         if (! stripos($commandName, 'Command')) {
             throw new InvalidCommandException('The provided command name is invalid. Command must have  "Command” in it!');
         }
 
-        $handler = str_replace('Command', 'CommandHandler', $commandName);
-
+        $handler = $namespace . '\\' . str_replace('Command', 'CommandHandler', $commandName);
+         
         if (! class_exists($handler)) {
             throw new HandlerNotRegisteredException("The command handler class $handler does not exist");
         }
@@ -76,7 +80,7 @@ class CommandBus
 
     private function getClassName($command)
     {
-        $reflection = new Reflection($command);
+        $reflection = new ReflectionClass($command);
 
         return $reflection->getShortName();
     }

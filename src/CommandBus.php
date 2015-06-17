@@ -70,18 +70,4 @@ class CommandBus
     {
         return $this->container->make($handlerName);
     }
-
-    /**
-     * Get class short name
-     
-     * @param object $command
-     * @return string
-     */
-
-    private function getClassName($command)
-    {
-        $reflection = new ReflectionClass($command);
-
-        return $reflection->getShortName();
-    }
 }

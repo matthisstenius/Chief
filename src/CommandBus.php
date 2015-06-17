@@ -1,6 +1,6 @@
 <?php namespace Matthis\Chief;
 
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Container;
 use Matthis\Chief\Exceptions\HandlerNotRegisteredException;
 use Matthis\Chief\Exceptions\InvalidCommandException;
 

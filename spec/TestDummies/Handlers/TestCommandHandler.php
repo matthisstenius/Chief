@@ -1,4 +1,4 @@
-<?php namespace spec\Matthis\Chief\TestDummies;
+<?php namespace spec\Matthis\Chief\TestDummies\Handlers;
 
 use Matthis\Chief\Contracts\CommandHandler;
 

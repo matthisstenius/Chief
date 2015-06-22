@@ -6,13 +6,15 @@ use Prophecy\Argument;
 use spec\Matthis\Chief\TestDummies\AnotherCommand;
 use spec\Matthis\Chief\TestDummies\Invalid;
 use spec\Matthis\Chief\TestDummies\TestCommand;
-use spec\Matthis\Chief\TestDummies\TestCommandHandler;
+use spec\Matthis\Chief\TestDummies\Handlers\TestCommandHandler;
 
 class CommandBusSpec extends ObjectBehavior
 {
     function it_should_execute_a_command_to_command_handler(Container $container)
     {
-        $container->make(TestCommand::class . 'Handler')->willReturn(new TestCommandHandler);
+        $container->make('spec\Matthis\Chief\TestDummies\Handlers\TestCommandHandler')
+            ->willReturn(new TestCommandHandler);
+            
         $this->beConstructedWith($container);
 
         $this->execute(new TestCommand)->shouldReturn('Command handled successfully');

@@ -51,7 +51,7 @@ class CommandBus
             throw new InvalidCommandException('The provided command name is invalid. Command must have  "Command” in it!');
         }
 
-        $handler = $namespace . '\\' . str_replace('Command', 'CommandHandler', $commandName);
+        $handler = $namespace . '\\Handlers\\' . str_replace('Command', 'CommandHandler', $commandName);
          
         if (! class_exists($handler)) {
             throw new HandlerNotRegisteredException("The command handler class $handler does not exist");

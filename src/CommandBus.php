@@ -4,6 +4,7 @@ use Illuminate\Contracts\Container\Container;
 use Matthis\Chief\Exceptions\HandlerNotRegisteredException;
 use Matthis\Chief\Exceptions\InvalidCommandException;
 use ReflectionClass;
+use Illuminate\Contracts\Queue\Queue;
 
 class CommandBus
 {
@@ -12,9 +13,10 @@ class CommandBus
      */
     private $container;
 
-    public function __construct(Container $container)
+    public function __construct(Container $container, Queue $queue)
     {
         $this->container = $container;
+        $this->queue = $queue;
     }
 
     /**
@@ -23,13 +25,26 @@ class CommandBus
      * @param $command
      * @throws InvalidCommandException
      */
-    public function execute($command)
+    public function execute($command, $serialized = false)
     {
+        if ($serialized) {
+            $command = unserialize($command);
+        }
+
         $handlerName = $this->translateToHandler($command);
 
         $commandHandler = $this->getHandlerClass($handlerName);
 
         return $commandHandler->handle($command);
+    }
+
+    public function queue($command)
+    {
+        $handlerName = $this->translateToHandler($command);
+
+        $commandHandler = $this->getHandlerClass($handlerName);
+
+        $this->queue->push('Matthis\Chief\CommandBus@execute', serialize($command), true);
     }
 
     /**

@@ -25,12 +25,8 @@ class CommandBus
      * @param $command
      * @throws InvalidCommandException
      */
-    public function execute($command, $serialized = false)
+    public function execute($command)
     {
-        if ($serialized) {
-            $command = unserialize($command);
-        }
-
         $handlerName = $this->translateToHandler($command);
 
         $commandHandler = $this->getHandlerClass($handlerName);
@@ -38,13 +34,19 @@ class CommandBus
         return $commandHandler->handle($command);
     }
 
-    public function queue($command)
+    public function queue($command, $queue = '')
     {
         $handlerName = $this->translateToHandler($command);
 
         $commandHandler = $this->getHandlerClass($handlerName);
 
-        $this->queue->push('Matthis\Chief\CommandBus@execute', serialize($command), true);
+        $this->queue->push('Matthis\Chief\CommandBus@execute', ['command' => serialize($command)], $queue);
+    }
+
+    private function executeFromQueue($job, $attributes)
+    {
+        $command = unserialize($attributes['command']);
+        $this->execute($command);
     }
 
     /**

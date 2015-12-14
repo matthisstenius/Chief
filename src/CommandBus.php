@@ -42,7 +42,6 @@ class CommandBus
     */
     public function queue($command, $queue = '')
     {
-        $handlerName = $this->translateToHandler($command);
         $this->queue->push('Matthis\Chief\CommandBus@executeFromQueue', ['command' => serialize($command)], $queue);
     }
 

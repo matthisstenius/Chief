@@ -34,16 +34,25 @@ class CommandBus
         return $commandHandler->handle($command);
     }
 
+    /**
+    * Queue the command
+    *
+    * @param $command
+    * @param string $queue
+    */
     public function queue($command, $queue = '')
     {
         $handlerName = $this->translateToHandler($command);
-
-        $commandHandler = $this->getHandlerClass($handlerName);
-
-        $this->queue->push('Matthis\Chief\CommandBus@execute', ['command' => serialize($command)], $queue);
+        $this->queue->push('Matthis\Chief\CommandBus@executeFromQueue', ['command' => serialize($command)], $queue);
     }
 
-    private function executeFromQueue($job, $attributes)
+    /**
+    * Handles the serialized queue job
+    *
+    * @param $job
+    * @param array $attributes
+    */
+    public function executeFromQueue($job, $attributes)
     {
         $command = unserialize($attributes['command']);
         $this->execute($command);
